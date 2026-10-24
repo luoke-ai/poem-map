@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>古诗地图 · 课本里的诗，标在真实的地方</title>
+<meta name="description" content="把中小学课本里的古诗词标到真实地图上：点开每一首诗，看到原诗、写作地与今地的对照，以及地名变迁的考据。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='10' fill='%23b0442f'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23fdf7ea' font-family='serif'>诗</text></svg>">
+<link rel="stylesheet" href="leaflet/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="map" aria-label="古诗词地图"></div>
+
+<header id="mapTitle">
+  <div class="stamp">诗</div>
+  <div>
+    <h1>古诗地图</h1>
+    <p>课本里背过的那些句子，到底写在哪里</p>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<div id="mapCredit">
+  <span>底图 © 高德地图 · 坐标 WGS-84→GCJ-02 · 诗句与考据据公开文献整理，存疑处已标注</span>
+</div>
+
+<aside id="panel">
+  <div id="sheetGrab" role="button" tabindex="0" aria-label="展开或收起"><i></i></div>
+
+  <div id="indexView">
+    <div class="panel-head">
+      <div class="kicker">拾 首 · 按 图 索 骥</div>
+      <h2 id="indexTitle">古诗<span id="countHint"></span></h2>
+      <div class="search" id="searchWrap">
+        <input id="q" type="search" autocomplete="off" placeholder="搜诗句、诗人、地名…">
+        <span class="ico">⌕</span>
+        <button class="clear" id="clearQ" aria-label="清空">✕</button>
+      </div>
+      <div class="chips" id="chips"></div>
+      <div class="meta-row">
+        <span id="metaText">统计中…</span>
+        <button class="rand" id="randBtn">随便看一首 →</button>
+      </div>
+    </div>
+    <div class="panel-scroll">
+      <ul id="list"></ul>
+      <div class="footer-note">
+        <b>怎么读</b>：点地图上的点，或点下面的诗名，右边会展开原诗与今地对照。
+        同一首诗若涉及两地（如「渭城」与「阳关」），地图上会连成一条线。<br><br>
+        <b>关于坐标</b>：今地位置取今日可见的遗址、祠庙或景区中心，精度到数百米；
+        凡学界无定论者，标为「存疑」并在考据里说明。<br><br>
+        数据整理自公开诗文注本与地方志，底图由高德地图提供。
+      </div>
+    </div>
+  </div>
+
+  <div id="detail" aria-live="polite">
+    <div class="d-head">
+      <button class="back" id="backBtn"><i>←</i>返回索引</button>
+      <div class="navbtns">
+        <button id="prevBtn" aria-label="上一首">↑</button>
+        <button id="nextBtn" aria-label="下一首">↓</button>
+      </div>
+    </div>
+    <div class="d-body" id="dBody"></div>
+  </div>
+</aside>
+
+<script src="leaflet/leaflet.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
